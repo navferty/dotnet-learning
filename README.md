@@ -1078,7 +1078,7 @@ var userHttpService = new UserHttpServiceBuilder()
 
 ## Добавить новый сервис для роутинга на основе Ocelot
 
-<img src="img/ocelot.png"  width="300" height="200" title="Мимишный оцелот">
+<img src="img/ocelot.jpg"  width="300" height="200" title="Мимишный оцелот">
 
 Добавить новый веб-сервис, который должен проксировать входящие веб-запросы к другим веб-сервисам, реализованным в рамках задач [CRUD на ASP.NET Core Web API](#crud-на-aspnet-core-web-api) и [Урок 5](#урок-5)
 
