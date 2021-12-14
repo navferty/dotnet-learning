@@ -28,10 +28,9 @@
  * Использование Task и Task\<TResult\> в асинхронном программировании. Это рекомендуемый способ реализации асинхронных операций.
 https://docs.microsoft.com/ru-ru/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap
  * Вопрос со звездочкой. Что общего у асинхронного метода и у метода-итератора:
-<details>
-  <summary>Примеры асинхронного метода и метода-итератора</summary>
+<details><summary>Примеры асинхронного метода и метода-итератора</summary>
 
-    ```csharp
+```csharp
     public async Task<MyData> AsyncMethod()
     {
         // некоторый синхронный код
@@ -55,7 +54,8 @@ https://docs.microsoft.com/ru-ru/dotnet/standard/asynchronous-programming-patter
             yield return result;
         }
     }
-    ```
+```
+
 </details>
 
  * Сборщик мусора. Поколения объектов. LOH. Сколько байт занимает в куче объект, имеющий одно поле типа int (на архитектуре x86, x64)? Что такое sync block index, таблица методов и указатель на неё
@@ -293,8 +293,6 @@ public class Tank
 https://metanit.com/sharp/tutorial  
 https://docs.microsoft.com/ru-ru/dotnet/csharp/tutorials/intro-to-csharp  
 https://docs.microsoft.com/ru-ru/dotnet/csharp/programming-guide  
-https://gitlab.funcoff.club/education/frontend/main/uploads/d11fa103c3359c943208d180736839fb/gitlab-for-beginners.pdf  
-https://gitlab.funcoff.club/education/frontend/main/uploads/2934faf2c61d45f6df7944e4d3f4a9d1/new-branches.pdf
 
 ### Книги
 
@@ -575,7 +573,7 @@ https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnet
 
 # Реализация фонового сервиса в приложении ASP.NET Core
 
-В приложении, реализованном в рамках задачи https://gitlab.funcoff.club/education/backend/main/-/issues/9 , реализовать фоновый сервис, который будет периодически обновлять значения Volume у каждого резервуара на случайную величину в пределах +-10% от текущего значения, но не ниже нуля. При выходе значения за допустимый предел MaxVolume необходимо логировать сообщение об ошибке в текстовый файл с логами.
+В приложении, реализованном в рамках предыдущей задачи, реализовать фоновый сервис, который будет периодически обновлять значения Volume у каждого резервуара на случайную величину в пределах +-10% от текущего значения, но не ниже нуля. При выходе значения за допустимый предел MaxVolume необходимо логировать сообщение об ошибке в текстовый файл с логами.
 
 Для записи логов в файл используйте NLog или другую библиотеку по своему усмотрению.
 
@@ -583,7 +581,7 @@ https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?v
 
 # Авторизация в приложении ASP.NET Core Web API
 
-В приложении, реализованном в рамках задачи https://gitlab.funcoff.club/education/backend/main/-/issues/9 , реализовать авторизацию на основе [JSON Web Token](https://ru.wikipedia.org/wiki/JSON_Web_Token) (JWT).
+В приложении, реализованном в рамках предыдущей задачи, реализовать авторизацию на основе [JSON Web Token](https://ru.wikipedia.org/wiki/JSON_Web_Token) (JWT).
 
 * Должны быть созданы необходимые таблицы в БД с пользователями и их правами (клэймами).
 * При первоначальной миграции БД должен быть добавлен пользователь ([seed data](https://docs.microsoft.com/en-us/ef/core/modeling/data-seeding)) с логином "admin", пароль "pwd123"
