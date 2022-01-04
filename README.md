@@ -9,6 +9,12 @@
 > `merge request`'ов (aka `pull request`) - запрос на вливание кода из рабочей ветки в основную (master/main).
 > Рекомендованный GUI-клиент - [GitHub Desktop](https://desktop.github.com) или встроенные инструменты в Visual Studio.
 
+# Введение
+
+Язык C# (си-шарп) - один из популярных языков программирования, который широко используется в бэкенд-разработке, создании десктопных приложений (как под ОС Windows, так и кроссплатформенных). Он появился в 200 году в составе .NET Framework, который поддерживался только в операционной системе Windows. Однако в 2015 году появилась платформа .NET Core, которая поддерживается на всех популярных ОС (Windows, Linux, Mac OS). .NET Core развивался параллельно со старым .NET Framework, но в 2020 году произошло их объединенение под названием .NET 5 (актуальная версия платформы - .NET 6, он вышел в конце 2021 года).
+
+Широкое распространение языка C# обусловило совершенствование инструментов и библиотек (в том числе с открытым исходным кодом): Visual Studio признаётся одной из лучших сред разработки, фреймворки ASP.NET Core и Entity Framework открывают много возможностей при написании веб-приложений. Активное и многочисленное сообщество, различные конференции и митапы, множество обучающей литературы и курсов - всё это поможет начинающему программисту освоить этот язык.
+
 # Темы для самостоятельного изучения
 
 В данном разделе приведены темы, которые рекомендуются изучить самостоятельно, путём чтения литературы по ссылкам, а также поиском информации в интернете. Умение "гуглить" - важный навык для программиста.
@@ -26,8 +32,8 @@
 
 ## Туториалы базового уровня
 1. https://ulearn.me/
-1. https://docs.microsoft.com/en-us/dotnet/core/get-started?tabs=windows
-1. https://docs.microsoft.com/ru-ru/aspnet/core/?view=aspnetcore-3.1#recommended-learning-path
+1. https://docs.microsoft.com/en-us/dotnet/core/get-started
+1. https://docs.microsoft.com/ru-ru/aspnet/core
 
 ## Язык C# и платформа .NET
 
@@ -112,64 +118,7 @@ https://docs.microsoft.com/ru-ru/dotnet/standard/asynchronous-programming-patter
 Возможности VS Code - полезные сочетания клавиш, наиболее популярные и полезные расширения
 (для отладки JS кода, для поддержки синтаксиса языка и рефакторинга, для интеграции с системами контроля версий, и многие другие)
 
-# Урок 0. Часть 1. Парсинг JSON и применение LINQ
-
-## Темы
-
-* LINQ
-* JSON
-* Открытие и чтение текстового файла
-
-## Задание
-
-Реализовть парсер JSON с коллекцией сделок из текстового файла [JSON_sample_1.json](data/JSON_sample_1.json)
-
- * Можно использвать `Newtonsoft.Json` или `System.Text.Json`
-
- * Результат должен быть в виде массива объектов класса Deal:
-
-```csharp
-class Deal
-{
-  public int Sum {get;set;}
-  public string Id {get;set;}
-  public DateTime Date {get;set;}
-}
-```
-
- * Реализовать метод `GetNumbersOfDeals`, который принимает коллекцию объектов класса Deal и:
-   - фильтрует по сумме (не меньше 100 рублей) 
-   - берёт 3 сделки с самой ранней датой (в отсортированном по сумме по убыванию виде)
-   - возвращает номера Id
-
-```csharp
-IList<int> GetNumbersOfDeals(IEnumerable<Deal> deals)
-{
-   ...
-}
-```
-
-# Урок 0. Часть 2. Использование стороннего API. Реализация WebApi на ASP.NET Core, использование websockets
-
- * Задание: реализовать консольное приложение, которое единственным параметром будет принимать ИНН организации, и печатать название организации, которое оно получит от [сервиса DaData](https://dadata.ru/api/find-party/).
-То есть нужно разобраться в их API, зарегистрироваться (сервис бесплатный для небольших масштабов), составить запрос и реализовать это на C#
-Рекомендуется установить и использовать Fiddler/Postman или другой аналогичный инструмент.
-
- * Задание со звёздочкой: реализовать веб-приложение на ASP.NET Core, функционально аналогичное предыдущему заданию, которое будет отдавать ответ по HTTP Get-запросу (ASP.NET Core Web Api)
-
- * Задание со звёздочкой и еще одной звездочкой: дополнить веб-приложение из предыдущего пункта возможностью работы по веб-сокетам (используя SignalR или голые сокеты).
-При поступлении входящего сообщения нужно получить имя организации и разослать его *всем* подписчикам.
-
-Ссылки:
-* [API-сервис DaData](https://dadata.ru/api/find-party/)
-* [Отправка HTTP-запросов из приложения на C#](https://docs.microsoft.com/ru-ru/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client)
-* [Использование Fiddler/Postman](https://www.tutorialsteacher.com/webapi/test-web-api)
-* [Создание простого WebApi](https://docs.microsoft.com/ru-ru/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.1&tabs=visual-studio#test-the-api)
-* [Использование SignalR](https://docs.microsoft.com/ru-ru/aspnet/core/tutorials/signalr?view=aspnetcore-3.1&tabs=visual-studio)
-* [Использование веб-сокетов напрямую](https://docs.microsoft.com/ru-ru/aspnet/core/fundamentals/websockets?view=aspnetcore-3.1)
-* [Пример простого приложения с веб-сокетами](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/fundamentals/websockets/samples/2.x/WebSocketsSample/Startup.cs)
-
-# Урок 1. Работа с классами, вывод сообщений в консоль
+# Урок 0. Работа с классами, вывод сообщений в консоль
 
 ## Темы
 
@@ -206,7 +155,7 @@ IList<int> GetNumbersOfDeals(IEnumerable<Deal> deals)
 
 </details>
 
-1. Создать классы, описывающие структуру приведённых выше таблиц
+1. Создать классы, описывающие структуру каждой из приведённых выше таблиц
 1. Создать экзепляры объектов из таблицы. Вы можете создавать объекты с помощью `new`, прямо в коде определив значения из приложенных таблиц. По желанию, можно реализовать чтение и десериализацию из json-файлов (потребуется продумать структуру и подготовить json файлы с указанными в таблицах данными)
 1. Реализовать функции, возвращающие коллекции каждого типа
 1. Осуществить вывод в консоль всех резервуаров, включая имена цеха и фабрики, в которых они числятся
@@ -309,7 +258,70 @@ https://visualstudio.microsoft.com/ru
 https://desktop.github.com  
 https://code.visualstudio.com
 
-# Урок 2. Основы .NET и C#. Часть 1
+# Урок 1. Часть 1. Парсинг JSON и применение LINQ
+
+## Темы
+
+* LINQ
+* JSON
+* Открытие и чтение текстового файла
+
+## Задание
+
+Реализовть парсер JSON с коллекцией сделок из текстового файла [JSON_sample_1.json](data/JSON_sample_1.json)
+
+ * Можно использвать `Newtonsoft.Json` или `System.Text.Json`
+
+ * Результат должен быть в виде массива объектов класса Deal:
+
+```csharp
+class Deal
+{
+  public int Sum {get;set;}
+  public string Id {get;set;}
+  public DateTime Date {get;set;}
+}
+```
+
+ * Реализовать метод `GetNumbersOfDeals`, который принимает коллекцию объектов класса Deal и:
+   - фильтрует по сумме (не меньше 100 рублей) 
+   - берёт 3 сделки с самой ранней датой (в отсортированном по сумме по убыванию виде)
+   - возвращает номера Id
+
+```csharp
+IList<int> GetNumbersOfDeals(IEnumerable<Deal> deals)
+{
+   ...
+}
+```
+
+ * Консольное приложение в функции `Main` должно вызывать метод `GetNumbersOfDeals` и выводить в консоль количество найденных значений и сами идентификаторы через запятую.
+
+> Реализованное приложение должно быть в отдельной папке в вашем репозитории.
+> Вы можете включить его в один solution вместе с приложением, которое Вы создали в прошлом уроке.
+
+# Урок 1. Часть 2. Использование стороннего API. Реализация WebApi на ASP.NET Core, использование websockets
+
+ * Задание: реализовать консольное приложение, которое единственным параметром будет принимать ИНН организации, и печатать название организации, которое оно получит от [сервиса DaData](https://dadata.ru/api/find-party/).
+То есть нужно разобраться в их API, зарегистрироваться (сервис бесплатный для небольших масштабов), составить запрос и реализовать это на C#
+Рекомендуется установить и использовать Fiddler/Postman или другой аналогичный инструмент.
+
+ * Задание со звёздочкой: реализовать веб-приложение на ASP.NET Core, функционально аналогичное предыдущему заданию, которое будет отдавать ответ по HTTP Get-запросу (ASP.NET Core Web Api)
+
+ * Задание со звёздочкой и еще одной звездочкой: дополнить веб-приложение из предыдущего пункта возможностью работы по веб-сокетам (используя SignalR или голые сокеты).
+При поступлении входящего сообщения нужно получить имя организации и разослать его *всем* подписчикам.
+
+Ссылки:
+* [API-сервис DaData](https://dadata.ru/api/find-party/)
+* [Отправка HTTP-запросов из приложения на C#](https://docs.microsoft.com/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client)
+* [Использование Fiddler/Postman](https://www.tutorialsteacher.com/webapi/test-web-api)
+* [Создание простого WebApi](https://docs.microsoft.com/aspnet/core/tutorials/first-web-api)
+* [Использование SignalR](https://docs.microsoft.com/aspnet/core/tutorials/signalr)
+* [Использование веб-сокетов напрямую](https://docs.microsoft.com/aspnet/core/fundamentals/websockets)
+* [Пример простого приложения с веб-сокетами](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/fundamentals/websockets/samples/2.x/WebSocketsSample/Startup.cs)
+
+
+# Урок 2. Часть 1. Основы .NET и C#
 
 ## Темы
 
@@ -319,13 +331,13 @@ https://code.visualstudio.com
 
 ## Задание
 
-1. Доработать архитектуру текущего консольного приложения согласно замечаниям эксперта
+1. Доработать архитектуру консольного приложения, которое Вы реализовали в Уроке 0, согласно замечаниям эксперта
 1. Добавить обработку исключений при получении данных, при поиске несуществующего элемента, при выгрузке json - метод поиска должен выбрасывать исключение, которое перехватывается в основном методе с логикой
 1. Выделить слой ввода/вывода сообщений пользователю в отдельный класс (все Console.WriteLine и пр.). Реализовать в этом классе событие ввода пользователя, на которое можно подписаться
 1. Реализовать подписку на событие ввода, которое выводит сообщение вида `Пользователь ввел число <число> в <время>`
 1. Реализовать операцию добавления/изменения/удаления нового элемента в файл json. Задание может быть реализовано как бесконечный цикл, считывающий ввод с консоли, также допустимо реализовать задание на ASP.NET Core Web API по желанию (+5 к карме).
 
-# Урок 3. Основы .NET и C#. Часть 2
+# Урок 2. Часть 2. Основы .NET и C#
 
 ## Темы
 
@@ -336,8 +348,7 @@ https://code.visualstudio.com
 ## Задание
 
 1. Реализовать интерфейс объединяющий классы `Factory`, `Unit`, `Tank`: все эти элементы обладают некоторыми одинаковыми свойствами (идентификатор, имя)
-1. При работе с данными использовать обобщённые коллекции. В сигнатурах методов (типы аргументов и тип возвращаемого значения) должны быть **строго** интерфейсы (`IEnumerable<T>` - где достаточно возможности перечисления foreach, `IReadOnlyCollection<T>` - где важно показать, что коллекция не подлежит изменению, `IList<T>` - где нужно иметь возможность обращаться к элементам по индексу). Недопустимо использовать в аргументах и возвращать из методов массив, `List<T>` и т.д.
-1. Реализовать асинхронный запрос данных из файла JSON или Excel
+1. При работе с данными [использовать обобщённые коллекции](https://docs.microsoft.com/dotnet/standard/collections/when-to-use-generic-collections). В сигнатурах методов (типы аргументов и тип возвращаемого значения) должны быть **строго** интерфейсы (`IEnumerable<T>` - где достаточно возможности перечисления foreach, `IReadOnlyCollection<T>` - где важно показать, что коллекция не подлежит изменению, `IList<T>` - где нужно иметь возможность обращаться к элементам по индексу). Недопустимо использовать в аргументах и возвращать из методов массив, `List<T>` и т.д.
 1. \* Реализовать поиск по коллекции через linq в двух вариантах синтаксиса (method chain, query expression)
 1. \** Реализовать CRUD в файл excel
 
@@ -392,7 +403,7 @@ public class UserEnteredNumberEventArgs
 * https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/exceptions/exception-handling
 * https://docs.microsoft.com/en-us/dotnet/standard/events/how-to-raise-and-consume-events
 
-# Задача на алгоритмы
+# Дополнительное задание. Задача на алгоритмы
 
 Массив чисел получен на основе отсортированного массива чисел (в котором могут быть пропуски), который был разделён на две части, которые поменяли местами и объединили в новый массив. Например:
 * Первоначальный массив  
@@ -482,7 +493,7 @@ public class NumericShiftDetectorTests
 ![image](img/xUnit.png)
 </details>
 
-# Задача на алгоритм (связный список)
+# Дополнительное задание. Задача на алгоритм (связный список)
 
 Есть [односвязный список](https://ru.wikipedia.org/wiki/Связный_список#Односвязный_список_(однонаправленный_связный_список)) очень большого размера (от млрд записей) и ограниченный объём свободной памяти (до нескольких килобайт). Элементы списка недоступны для изменения (доступны только для чтения).
 
@@ -490,7 +501,7 @@ public class NumericShiftDetectorTests
 
 ![image](img/linked-list.png)
 
-# Запуск ASP.NET Core приложения в Docker
+# Дополнительное задание. Запуск ASP.NET Core приложения в Docker
 
 Создать два приложения ASP.NET Core Web Api.
 
@@ -502,7 +513,7 @@ public class NumericShiftDetectorTests
 
 Адрес для HTTP-запроса из второго приложения к первому должен храниться в appsettings.json второго приложения.
 
-# CRUD на ASP.NET Core Web API
+# Урок 3. CRUD на ASP.NET Core Web API
 
 Реализовать веб-приложение ASP.NET Core с простейшими [CRUD-операциями](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete).
 
@@ -571,25 +582,27 @@ DELETE `api/tank/{tankId}` удаление резервуара
   </details>
 * Для доступа к данным предлагается выделить отдельный слой абстракции - [репозиторий](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design#the-repository-pattern). Пример реализации [ASP.NET Core WebAPI приложения с EF Core с использованием репозитория](https://medium.com/net-core/repository-pattern-implementation-in-asp-net-core-21e01c6664d7)
 
+> В качестве СУБД Вы можете использовать Postgres, MS SQL, SQLite или другой движок на выбор, из числа [поддерживаемых](https://docs.microsoft.com/ef/core/providers).
+
 ## Материалы
 
-https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.1&tabs=visual-studio
+https://docs.microsoft.com/aspnet/core/tutorials/first-web-api
 
-# Реализация фонового сервиса в приложении ASP.NET Core
+# Урок 4. Реализация фонового сервиса в приложении ASP.NET Core
 
 В приложении, реализованном в рамках предыдущей задачи, реализовать фоновый сервис, который будет периодически обновлять значения Volume у каждого резервуара на случайную величину в пределах +-10% от текущего значения, но не ниже нуля. При выходе значения за допустимый предел MaxVolume необходимо логировать сообщение об ошибке в текстовый файл с логами.
 
-Для записи логов в файл используйте NLog или другую библиотеку по своему усмотрению.
+Для записи логов в файл используйте Serilog, NLog или другую библиотеку по своему усмотрению.
 
-https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-3.1&tabs=visual-studio
+https://docs.microsoft.com/aspnet/core/fundamentals/host/hosted-services
 
-# Авторизация в приложении ASP.NET Core Web API
+# Урок 5. Авторизация в приложении ASP.NET Core Web API
 
 В приложении, реализованном в рамках предыдущей задачи, реализовать авторизацию на основе [JSON Web Token](https://ru.wikipedia.org/wiki/JSON_Web_Token) (JWT).
 
 * Должны быть созданы необходимые таблицы в БД с пользователями и их правами (клэймами).
-* При первоначальной миграции БД должен быть добавлен пользователь ([seed data](https://docs.microsoft.com/en-us/ef/core/modeling/data-seeding)) с логином "admin", пароль "pwd123"
-* Пароли не должны храниться в БД в открытом виде.
+* При первоначальной миграции БД должен быть добавлен пользователь ([seed data](https://docs.microsoft.com/ef/core/modeling/data-seeding)) с логином "admin", пароль "pwd123"
+* Пароли не должны храниться в БД в открытом виде (хранение в БД открытых паролей - грубейшая ошибка разработчиков приложений).
 * Токен должен быть подписан секретным ключом, который хранится в appsettings.json
 * Время действия токена - 2 часа
 * Предоставлен API для авторизации, получения информации о текущем авторизованном пользователе и смены пароля:
@@ -613,13 +626,13 @@ https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?v
   }
   ```
 
-* Все существующие методы управления  установками и резервуарами (UnitController и TankController) должны требовать авторизацию. Если запрос не содержит токена, либо представленный в HTTP-заголовках запроса Bearer-токен невалидный (истёк, неверно подписан) - должен возвращаться ответ `401 Unauthorized`
+* Все существующие методы управления и чтения установок и резервуаров (UnitController и TankController) должны требовать авторизацию. Если запрос не содержит токена, либо представленный в HTTP-заголовках запроса Bearer-токен невалидный (истёк, неверно подписан) - должен возвращаться ответ `401 Unauthorized`
 
 * Управление установками, а также управление резервуарами требует наличия соответствующего типа клэймов у авторизованного пользователя, в противном случае возвращается ответ 403 Forbidden)
 
 * По желанию можно также реализовать методы управления пользователями - создание и удаление пользователя, управление правами пользователя (для редактирования пользователей, авторизованный пользователь также должен обладать соответствующими правами)
 
-# Работа с коллекциями
+# Дополнительное задание. Работа с коллекциями
 
 ## Темы
 
@@ -654,8 +667,11 @@ https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?v
       .AsEnumerable()
       .Where(x => x.MaxVolume > 100)
       .ToList();
+  
+  var result3 = dbContext.Tanks
+      .FirstOrDefault(x => x.MaxVolume > 100);
   ```
-* Какое ключевое слово используется в методе-итераторе, чтобы вернуть очередной элемент? Какое слово используется для окончания итерации?
+* Какое ключевое слово используется в [методе-итераторе](https://docs.microsoft.com/dotnet/csharp/iterators#enumeration-sources-with-iterator-methods), чтобы вернуть очередной элемент? Какое слово используется для окончания итерации?
 
 ## Материалы
 
@@ -671,7 +687,7 @@ https://jsonplaceholder.typicode.com/guide.html
 
 https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=netcore-3.1
 
-# Async-await, Task asynchronous pattern
+# Дополнительное задание. Async-await, Task asynchronous pattern
 
 ## Темы
 
@@ -704,9 +720,9 @@ https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=netc
 
 https://devblogs.microsoft.com/pfxteam/await-anything/
 
-# SQL
+# Урок 6. SQL
 
-> Рекомендуется использовать MS SQL Server
+> Рекомендуется использовать Postgres или MS SQL Server
 
 ## Темы для самостоятельного изучения
 
@@ -723,65 +739,21 @@ https://devblogs.microsoft.com/pfxteam/await-anything/
     * Выбрать все установки, у которых есть по крайней мере один резервуар с текущим значением Volume выше 1000
     * Выбрать все резервуары, относящиеся к газофракционным установкам =)
 
-    <details><summary>SQL-скрипт создания таблицы</summary>
-    
-    ```sql
-    CREATE TABLE [dbo].[Factory](
-        [Id] [int] IDENTITY(1,1) NOT NULL,
-        [Name] [nvarchar](max) NULL,
-        [Description] [nvarchar](max) NULL,
-        CONSTRAINT [PK_Statuses] PRIMARY KEY CLUSTERED ([Id] ASC)
-    )
+> Вы можете использовать готовые SQL-скрипты создания таблицы для [Postgres](data/postgres.sql) или [MS SQL Server](ms-sql.sql)
 
-    CREATE TABLE [dbo].[Unit](
-        [Id] [int] IDENTITY(1,1) NOT NULL,
-        [Name] [nvarchar](max) NULL,
-        [FactoryId] [int] NULL,
-        CONSTRAINT [PK_Unit] PRIMARY KEY CLUSTERED ([Id] ASC)
-    )
-    ALTER TABLE [dbo].[Unit] WITH CHECK ADD CONSTRAINT [FK_Unit_Factory_FactoryId] FOREIGN KEY([FactoryId])
-        REFERENCES [dbo].[Factory] ([Id])
-
-    CREATE TABLE [dbo].[Tank](
-        [Id] [int] IDENTITY(1,1) NOT NULL,
-        [Name] [nvarchar](max) NULL,
-        [Volume] [int] NOT NULL,
-        [MaxVolume] [int] NOT NULL,
-        [UnitId] [int] NULL,
-        CONSTRAINT [PK_Tank] PRIMARY KEY CLUSTERED ([Id] ASC)
-    )
-    ALTER TABLE [dbo].[Tank] WITH CHECK ADD CONSTRAINT [FK_Tank_Unit_UnitId] FOREIGN KEY([UnitId])
-        REFERENCES [dbo].[Unit] ([Id])
-
-    INSERT [dbo].[Factory] ([Name], [Description]) VALUES (N'МНПЗ', N'Московский нефтеперерабатывающий завод')
-    INSERT [dbo].[Factory] ([Name], [Description]) VALUES (N'ОНПЗ', N'Омский нефтеперерабатывающий завод')
-
-    INSERT [dbo].[Unit] ([Name], [FactoryId]) VALUES (N'ГФУ-1', 1)
-    INSERT [dbo].[Unit] ([Name], [FactoryId]) VALUES (N'ГФУ-2', 1)
-    INSERT [dbo].[Unit] ([Name], [FactoryId]) VALUES (N'Установка АВТ-6', 2)
-
-    INSERT [dbo].[Tank] ([Name], [Volume], [MaxVolume], [UnitId]) VALUES (N'Резервуар 1', 1500, 2000, 1)
-    INSERT [dbo].[Tank] ([Name], [Volume], [MaxVolume], [UnitId]) VALUES (N'Резервуар 2', 2500, 3000, 1)
-    INSERT [dbo].[Tank] ([Name], [Volume], [MaxVolume], [UnitId]) VALUES (N'Доп. резервуар 24', 3000, 3000, 2)
-    INSERT [dbo].[Tank] ([Name], [Volume], [MaxVolume], [UnitId]) VALUES (N'Резервуар 35', 3000, 3000, 2)
-    INSERT [dbo].[Tank] ([Name], [Volume], [MaxVolume], [UnitId]) VALUES (N'Резервуар 47', 4000, 5000, 2)
-    INSERT [dbo].[Tank] ([Name], [Volume], [MaxVolume], [UnitId]) VALUES (N'Резервуар 256', 500, 500, 3)
-    ```
-    </details>
-    
 1. Индексы - что такое, как создать. Кластеризованные/некластеризованные. Какие преимущества даёт, какими доп. затратами может обернуться.
 
-1. Оконные функции MS SQL  
-    https://docs.microsoft.com/ru-ru/sql/t-sql/queries/select-over-clause-transact-sql?view=sql-server-ver15  
+1. Оконные функции  
+    https://docs.microsoft.com/sql/t-sql/queries/select-over-clause-transact-sql?view=sql-server-ver15  
     Из оконных функций чаще всего используется ROW_NUMBER()  
     Нужно понимать логику выражения `OVER(PARTITION BY ... ORDER BY ...)`  
-    Напишите запрос, который будет удалять из таблицы `[dbo].[Factory]` (см. скрипт создания таблицы в предшествующих пунктах) дубликаты строк, сравнивая по двум столбцам `Name` и `Description` (удалению подлежат более поздние записи с бОльшим Id)
+    Напишите запрос, который будет удалять из таблицы `Factory` (см. скрипт создания таблицы в предшествующих пунктах) дубликаты строк, сравнивая по двум столбцам `Name` и `Description` (удалению подлежат более поздние записи с бОльшим `Id`)
 
-1. Как построить плана запроса в SSMS. Что быстрее при поиске уникального значения - scan vs seek? Какими способами можно ускорить запрос, в процессе которого происходит scan всей таблицы с поиском одного значения по одному столбцу типа int?
+1. Как построить плана запроса в SSMS или pgAdmin? Что быстрее при поиске уникального значения - scan vs seek? Какими способами можно ускорить запрос, в процессе которого происходит scan всей таблицы с поиском одного значения по одному столбцу типа int?
 
 1. Напишите запрос к БД, созданной в рамках задачи [CRUD на ASP.NET Core Web API](#crud-на-aspnet-core-web-api) , запрос, содержащий `SELECT`, `WHERE` и `LEFT JOIN`. Постройте для этого запроса план запроса в SSMS.
 
-1. Доп. задание. Запустив в режиме отладки приложение, реализованное в рамках задачи [CRUD на ASP.NET Core Web API](#crud-на-aspnet-core-web-api) , запустите и подключитесь к SQL серверу с помощью профилировщика (SQL Server Profiler). Отследите запросы, в которые Entity Framework транслирует Ваш код на C#. Попробуйте выполнить различные запросы при помощи интерфейса `IQueryable<T>`, и найти SQL запросы, которые получаются в результате:
+1. Доп. задание (MS SQL). Запустив в режиме отладки приложение, реализованное в рамках задачи [CRUD на ASP.NET Core Web API](#crud-на-aspnet-core-web-api) , запустите и подключитесь к SQL серверу с помощью профилировщика (SQL Server Profiler). Отследите запросы, в которые Entity Framework транслирует Ваш код на C#. Попробуйте выполнить различные запросы при помощи интерфейса `IQueryable<T>`, и найти SQL запросы, которые получаются в результате:
    * выбор множества значений (`ToListAsync`)
    * выбор одного значения (`FirstOrDefaultAsync`)
    * выбор нескольких значений из строки с использованием анонимного типа (`Select(x => new { x.Id, x.Name })`)
@@ -792,6 +764,8 @@ https://devblogs.microsoft.com/pfxteam/await-anything/
     ![image](img/SQL-profiler-filter.png)
     </details>
 
+1. Доп. задание (Postgres). Попробуйте выполнить анализ, аналогичный описанному в предыдущем пункте, используя инструментарий postgres. Например, [EXPLAIN](https://www.postgresql.org/docs/9.2/using-explain.html) для анализа плана выполнения запроса, и модуль [pg_stat_statements](https://www.postgresql.org/docs/9.4/pgstatstatements.html) для просмотра выполненных запросов и их статистики.
+
 ## Туториал - рекомендуется самостоятельно пройти
 
 https://www.w3schools.com/sql/default.asp
@@ -801,16 +775,14 @@ https://www.w3schools.com/sql/default.asp
 * [MS SQL Server Management Studio (SSMS)](https://docs.microsoft.com/ru-ru/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)
 * [SQL Server Profiler](https://docs.microsoft.com/ru-ru/sql/tools/sql-server-profiler/sql-server-profiler?view=sql-server-ver15)
 
-# .NET
+# Дополнительное задание. Углубляемся в .NET
 
 ## Темы
 
 * Перегрузка методов, необязательные параметры со значениями по умолчанию, out и ref аргументы
-* Интерфейс [IDisposable](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable?view=netcore-3.1), [конструкция `using`](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-statement)
-* [Атрибуты](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/)
-* [Garbage Collector](https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals)
-
-[TODO] темы и задания дополняются
+* Интерфейс [IDisposable](https://docs.microsoft.com/dotnet/api/system.idisposable), [конструкция `using`](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/using-statement)
+* [Атрибуты](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/attributes)
+* [Garbage Collector](https://docs.microsoft.com/dotnet/standard/garbage-collection/fundamentals)
 
 ## Задания
 
@@ -820,9 +792,10 @@ https://www.w3schools.com/sql/default.asp
 * Реализовать класс-обёртку над любым managed-ресурсом будет дополнено
 * \* Реализовать класс-обёртку над unmanaged-ресурсом - дескриптором файла
 * \* Сколько поколений объектов в CLR? Какого размера должен быть объект, чтобы он сразу попал в кучу больших объектов (Large object heap)? В чем преимущество struct на class при создании большого количества экземпляров данного типа? Предположим, что приложение активно работает с памятью, создавая большое количество объектов. Данные поступают непрерывным потоком с большой скоростью, и в силу особенностей бизнес-логики приложения успевают попасть во второе поколение до того, как станут недоступными по ссылке, и регулярная полная сборка мусора сильно сказывается на производительности. Какие способы решения этой проблемы Вы можете предложить? Опишите плюсы и минусы каждого варианта
-* ildasm
+* Откройте одну из своих сборок (dll файл в папке bin в Вашем проекте) в программе ildasm. Проанализируйте, из чего состоит dll, познакомьтесь с кодом [Intermediate Language](https://docs.microsoft.com/dotnet/standard/managed-code) (IL), в который преобразуется исходный код на C# при компиляции проекта.
+* Скопируйте несколько методов из своего проекта на сайт [sharplab.io](https://sharplab.io). Этот сайт предлагает удобный способ проанализировать, во что превращается Ваш код на C# "под капотом".
 
-# Урок 3. Работа с БД
+# Урок 7. Работа с БД
 
 ## Темы
 
@@ -832,13 +805,13 @@ https://www.w3schools.com/sql/default.asp
 
 ## Задание
 
-1. Первые три пункта [задания по SQL]([SQL](#sql)) обязательно, остальные по желанию
-1. Реализовать общий интерфейс работы с данными ([репозиторий](https://metanit.com/sharp/articles/mvc/11.php)) и взаимодействовать строго через него
-1. Создать новый класс для работы с данными, реализующий интерфейс из предыдущего пункта, использующий базу данных и ADO.NET (можете использовать `Dapper` или \*`Entity Framework`)
-1. Для своего приложения можете использовать схему БД из SQL скрипта миграции в задаче 
-[SQL](#sql)
-1. Реализовать методы CRUD (добавление/удаление/изменение) для сущностей `[Factory]`, `[Unit]`, `[Tank]`
-1. Выполнить обязательные пункты задания [.NET](#net) (те которые без \*)
+Доработайте своё WebApi приложение из предыдущих уроков.
+
+1. Должен быть реализован общий интерфейс работы с данными ([репозиторий](https://metanit.com/sharp/articles/mvc/11.php)), взаимодействовие строго через него
+1. Создать альтернативный класс для работы с данными, реализующий интерфейс из предыдущего пункта, использующий базу данных и ADO.NET (можете использовать, например, `Dapper`)
+1. Для своего приложения можете использовать схему БД из SQL скрипта миграции в одной из предыдущих задач
+1. Вместо использования готового скрипта, воспользуйтесь инструментом [dotnet-ef](https://docs.microsoft.com/ef/core/cli/dotnet) для создания [миграций](https://docs.microsoft.com/ef/core/managing-schemas/migrations) и актуализации БД.
+1. Реализовать методы CRUD (добавление/удаление/изменение) для сущностей `[Factory]`, `[Unit]`, `[Tank]` (если не были выполнены ранее)
 1. \* Реализовать класс MigrationWithBlackJackAndHookers который будет проверять наличие в БД таблиц, указанных в предыдущем пункте, и в случае их отсутствия выполнять скрипты `CREATE TABLE` `ALTER TABLE` и `INSERT VALUES` для создания нужной схемы БД и наполнения первоначальными данными.
 
 ## Материалы
@@ -847,7 +820,7 @@ https://www.w3schools.com/sql/default.asp
 
 [CQRS](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs)
 
-# Реализовать собственную micro-ORM
+# Дополнительное задание. Реализовать собственную micro-ORM
 
 ## Лучший способ разобраться в технологии - изобрести её.
 
@@ -880,7 +853,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Пользователь определяет класс-контекст `CatDbContext` (Вы можете объявить абстрактный класс или интерфейс - например `SuperDbContext`, от которого пользователь должен наследовать пользовательский класс контекста), и регистрирует его в Startup'е, с указанием строки подключения к БД. После этого он может запросить через DI в своём сервисе экземпляр зарегистрированного контекста (`CatDbContext`), у которого будет возможность выполнить запрос `QueryMultipleItems`.
 
-# Замыкания
+# Дополнительное задание. Замыкания
 
 ## Материалы
 
@@ -925,25 +898,25 @@ void DoAgain()
 }
 ```
 
-# Урок 4. Entity Framework
+# Урок 7. Entity Framework
 
 ## Темы
 
-1. [Web API](https://docs.microsoft.com/ru-ru/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.1&tabs=visual-studio)
+1. [Web API](https://docs.microsoft.com/aspnet/core/tutorials/first-web-api)
 1. [Entity framework core](https://metanit.com/sharp/entityframeworkcore/1.1.php)
-1. [Dependency injection](https://docs.microsoft.com/ru-ru/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-3.1)
+1. [Dependency injection](https://docs.microsoft.com/aspnet/core/fundamentals/dependency-injection)
 
 ## Задание
 
 1. Создать новый проект web-api и контроллеры для работы с сущностями (если уже создан, использовать существующий)
-1. Дополнить модели [свойствами навигации](https://docs.microsoft.com/ru-ru/ef/ef6/fundamentals/relationships) - для установки - свойство `Factory`, для резервуара - свойство `Unit`
+1. Дополнить модели [свойствами навигации](https://docs.microsoft.com/ef/ef6/fundamentals/relationships) - для установки - свойство `Factory`, для резервуара - свойство `Unit`
 1. Реализовать подключение к базе данных с помощью EF Core
 1. Создать миграции
 1. Реализовать CRUD с помощью EF и LINQ. Метод получения одного объекта по id должен отдавать его вместе со связанными сущностями (например, для установки также должны приходить в ответе данные о заводе, которому принадлежит установка)
 1. \* Использовать AutoMapper для формирования списка Dto на основе сущностей из БД
 1. \* Валидация на основе FluentValidator (не пустые имена и описания сущностей, объем не превышает максимальный)
 
-# Урок 5. Загрузка большого объема данных по расписанию
+# Урок 8. Загрузка большого объема данных по расписанию
 
 ## Сервис mock-данных
 
@@ -1102,9 +1075,9 @@ var userHttpService = new UserHttpServiceBuilder()
 
 # Использование Swagger
 
-Подключите и используйте в своём веб-приложении [Swagger](https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-3.1&tabs=visual-studio)
+Подключите и используйте в своём веб-приложении [Swagger](https://docs.microsoft.com/aspnet/core/tutorials/getting-started-with-swashbuckle)
 
-# Урок 6. Windows Presentation Foundation (WPF)
+# Урок 9. Windows Presentation Foundation (WPF)
 
 ## Темы
 
