@@ -24,16 +24,17 @@
  * Сложность алгоритмов, нотация О-большое. Иметь представление об алгоритмах сортировки (пузырьком, слиянием и т.п.). Рекомендуется пройти курс [Оценка сложности алгоритмов](https://ulearn.me/Course/complexity/Zachem_mne_eto__f5e3d1fe-09aa-4403-9fb2-e175b40577ae) на ulearn.me
  * Структуры данных - массивы, одно- и двусвязные списки, деревья (бинарные, красно-черные), хэш-таблицы. [Неплохая обзорная статья](https://habr.com/en/company/netologyru/blog/334914) по структурам данных.
  * Реализация структур данных в BCL: пространства имен `System.Collections` и `System.Collections.Generic` - какие структуры лежат в основе этих классов (Array, List, HashSet, Dictionary), [выбор нужного типа коллекции](https://docs.microsoft.com/ru-ru/dotnet/standard/collections/selecting-a-collection-class) для конкретной задачи
- * \* Знакомство с алгоритмами вроде решета Эратосфена (и их реализация на C#)
+ * Знакомство с алгоритмами: сортировка массива ([пузырьковая](https://ru.wikipedia.org/wiki/Сортировка_пузырьком), [слиянием](https://ru.wikipedia.org/wiki/Сортировка_слиянием), [быстрая](https://ru.wikipedia.org/wiki/Быстрая_сортировка)), [решето Эратосфена](https://ru.wikipedia.org/wiki/Решето_Эратосфена)
+* \* Самостоятельная реализация алгоритмов из предыдущего пункта на C#
 
 ## Материалы для самостоятельного изучения:
-1. https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/index
+1. https://docs.microsoft.com/dotnet/csharp/tour-of-csharp/index
 1. Jeffrey Richter "CLR via C#"
 
 ## Туториалы базового уровня
 1. https://ulearn.me/
-1. https://docs.microsoft.com/en-us/dotnet/core/get-started
-1. https://docs.microsoft.com/ru-ru/aspnet/core
+1. https://docs.microsoft.com/dotnet/core/get-started
+1. https://docs.microsoft.com/aspnet/core
 
 ## Язык C# и платформа .NET
 
@@ -46,8 +47,7 @@
  * История платформы .NET; старый .NET Framework vs актуальный .NET (бывший .NET Core).
  * Файл csproj: 
  * async/await. Что такое асинхронный вызов, чем он отличается от синхронного. В чем преимущество асинхронного вызова продлжительной операции, например сетевого запроса или тяжелых вычислений?
- * Использование Task и Task\<TResult\> в асинхронном программировании. Это рекомендуемый способ реализации асинхронных операций.
-https://docs.microsoft.com/ru-ru/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap
+ * Использование Task и Task\<TResult\> в асинхронном программировании. Это [рекомендуемый способ](https://docs.microsoft.com/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap) реализации асинхронных операций.
  * Вопрос со звездочкой. Что общего у асинхронного метода и у метода-итератора:
 <details><summary>Примеры асинхронного метода и метода-итератора</summary>
 
@@ -244,8 +244,8 @@ public class Tank
 ### Руководства
 
 https://metanit.com/sharp/tutorial  
-https://docs.microsoft.com/ru-ru/dotnet/csharp/tutorials/intro-to-csharp  
-https://docs.microsoft.com/ru-ru/dotnet/csharp/programming-guide  
+https://docs.microsoft.com/dotnet/csharp/tutorials/intro-to-csharp  
+https://docs.microsoft.com/dotnet/csharp/programming-guide  
 
 ### Книги
 
@@ -328,8 +328,8 @@ IList<int> GetNumbersOfDeals(IEnumerable<Deal> deals)
 
 ## Темы
 
-1. [Обработка исключений](https://docs.microsoft.com/ru-ru/dotnet/standard/exceptions/)
-1. [Делегаты, события, лямбды](https://docs.microsoft.com/ru-ru/dotnet/standard/delegates-lambdas)
+1. [Обработка исключений](https://docs.microsoft.com/dotnet/standard/exceptions/)
+1. [Делегаты, события, лямбды](https://docs.microsoft.com/dotnet/standard/delegates-lambdas)
 1. [Коллекции](https://metanit.com/sharp/tutorial/4.3.php)
 
 ## Задание
@@ -345,7 +345,7 @@ IList<int> GetNumbersOfDeals(IEnumerable<Deal> deals)
 ## Темы
 
 1. [Интерфейсы, Наследование](https://metanit.com/sharp/tutorial/3.9.php)
-1. [Универсальные шаблоны](https://docs.microsoft.com/ru-ru/dotnet/standard/generics/)
+1. [Универсальные шаблоны](https://docs.microsoft.com/dotnet/standard/generics/)
 1. [Асинхронность](https://metanit.com/sharp/tutorial/13.3.php)
 
 ## Задание
@@ -403,8 +403,8 @@ public class UserEnteredNumberEventArgs
 
 ## Материалы
 
-* https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/exceptions/exception-handling
-* https://docs.microsoft.com/en-us/dotnet/standard/events/how-to-raise-and-consume-events
+* https://docs.microsoft.com/dotnet/csharp/programming-guide/exceptions/exception-handling
+* https://docs.microsoft.com/dotnet/standard/events/how-to-raise-and-consume-events
 
 # Дополнительное задание. Задача на алгоритмы
 
@@ -589,15 +589,21 @@ DELETE `api/tank/{tankId}` удаление резервуара
 >
 > Результат запроса к БД преобразован в коллекцию объектов в памяти, по которой, например, можно пройтись в цикле foreach.
 
+В качестве СУБД Вы можете использовать Postgres, MS SQL, SQLite или другой движок на выбор, из числа [поддерживаемых](https://docs.microsoft.com/ef/core/providers).
+
+> Не забудьте установить в свой проект необходимые NuGet-пакеты [Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools) и [Microsoft.EntityFrameworkCore.Design](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Design),
+> а также провайдер для выбранной СУБД (например для [Postgres](https://www.nuget.org/packages/Npgsql.EntityFrameworkCore.PostgreSQL) или [MS SQL Server](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer)).
+> Для управления миграциями или контекстом БД через command-line interface используйте [dotnet-ef CLI Tools](https://docs.microsoft.com/ef/core/cli/dotnet), его нужно установить отдельной командой.
+
 * Для создания контроллера со стандартными CRUD-операциями можно использовать готовый шаблон:
   <details>
     <summary>Screenshot</summary>
 
     ![image](img/add-API-controller.png)
   </details>
-* Для доступа к данным предлагается выделить отдельный слой абстракции - [репозиторий](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design#the-repository-pattern). Пример реализации [ASP.NET Core WebAPI приложения с EF Core с использованием репозитория](https://medium.com/net-core/repository-pattern-implementation-in-asp-net-core-21e01c6664d7)
+* Для доступа к данным предлагается выделить отдельный слой абстракции - [репозиторий](https://docs.microsoft.com/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design#the-repository-pattern). Пример реализации [ASP.NET Core WebAPI приложения с EF Core с использованием репозитория](https://medium.com/net-core/repository-pattern-implementation-in-asp-net-core-21e01c6664d7)
 
-> В качестве СУБД Вы можете использовать Postgres, MS SQL, SQLite или другой движок на выбор, из числа [поддерживаемых](https://docs.microsoft.com/ef/core/providers).
+> Если Вы испытываете затруднения при создании/применении миграций, можно использовать готовые SQL-скрипты подготовки БД для [Postgres](data/postgres.sql) или [MS SQL Server](data/ms-sql.sql)  
 
 ## Материалы
 
@@ -654,7 +660,7 @@ https://docs.microsoft.com/aspnet/core/fundamentals/host/hosted-services
 * Обобщения (Generics), параметры типа
 * `IEnumerable` и `IEnumerable<T>`
 * Структуры данных (массив, динамический массив, хэш-таблица, связный список, дерево)
-* `IQueryable`, [EF Core](https://docs.microsoft.com/en-us/ef/core/)
+* `IQueryable`, [EF Core](https://docs.microsoft.com/ef/core/)
 
 ## Задание
 
@@ -671,7 +677,7 @@ https://docs.microsoft.com/aspnet/core/fundamentals/host/hosted-services
 
 * Как связан интерфейс `IEnumerable` и цикл `foreach`. Можно ли использовать в цикле `foreach` коллекцию, которая не наследует этот интерфейс?
 * Чем отличается `IEnumerable` и `IQueryable`? Для чего используется `IQueryable`?
-* Предполагая, что dbContext является [контекстом БД](https://docs.microsoft.com/en-us/ef/core/miscellaneous/configuring-dbcontext), какой SQL-запрос будет выполнен в каждом из случаев:
+* Предполагая, что dbContext является [контекстом БД](https://docs.microsoft.com/ef/core/miscellaneous/configuring-dbcontext), какой SQL-запрос будет выполнен в каждом из случаев:
 
   ```csharp
   var result1 = dbContext.Tanks
@@ -690,17 +696,17 @@ https://docs.microsoft.com/aspnet/core/fundamentals/host/hosted-services
 
 ## Материалы
 
-https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/collections
+https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/collections
 
-https://docs.microsoft.com/en-us/dotnet/standard/collections/
+https://docs.microsoft.com/dotnet/standard/collections/
 
-https://docs.microsoft.com/en-us/ef/core/miscellaneous/configuring-dbcontext
+https://docs.microsoft.com/ef/core/miscellaneous/configuring-dbcontext
 
 https://jsonplaceholder.typicode.com/guide.html
 
 Для отправки HTTP-запроса можно использовать класс `HttpClient`:
 
-https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=netcore-3.1
+https://docs.microsoft.com/dotnet/api/system.net.http.httpclient?view=netcore-3.1
 
 # Дополнительное задание. Async-await, Task asynchronous pattern
 
@@ -712,9 +718,9 @@ https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=netc
 
 ## Задание
 
-Напишите [метод расширения](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods) RunInParallel, который будет принимать в this-аргументе IEnumerable<Task<T>>, и вторым аргументом int maxParallelTasks - максимальное количество одновременно выполняемых задач (со значением по умолчанию 4).
+Напишите [метод расширения](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/extension-methods) RunInParallel, который будет принимать в this-аргументе IEnumerable<Task<T>>, и вторым аргументом int maxParallelTasks - максимальное количество одновременно выполняемых задач (со значением по умолчанию 4).
 
-> В качестве примитива синхронизации можно использовать [SemaphoreSlim](https://docs.microsoft.com/en-us/dotnet/api/system.threading.semaphoreslim?view=netcore-3.1) или любой другой по Вашему усмотрению.
+> В качестве примитива синхронизации можно использовать [SemaphoreSlim](https://docs.microsoft.com/dotnet/api/system.threading.semaphoreslim?view=netcore-3.1) или любой другой по Вашему усмотрению.
 
 Реализуйте консольное приложение, которое будет выполнять параллельную загрузку записей с https://jsonplaceholder.typicode.com/posts/{postId} где postId от 1 до 100 в 5 потоков, и добавлять их в одну коллекцию.
 
@@ -722,12 +728,12 @@ https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=netc
 
 ## Материалы
 
-* https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/
-* https://docs.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap
-* https://docs.microsoft.com/en-us/dotnet/standard/threading/overview-of-synchronization-primitives
-* https://docs.microsoft.com/en-us/dotnet/standard/threading/semaphore-and-semaphoreslim
-* https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods
-* https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/how-to-add-custom-methods-for-linq-queries
+* https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/async/
+* https://docs.microsoft.com/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap
+* https://docs.microsoft.com/dotnet/standard/threading/overview-of-synchronization-primitives
+* https://docs.microsoft.com/dotnet/standard/threading/semaphore-and-semaphoreslim
+* https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/extension-methods
+* https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/how-to-add-custom-methods-for-linq-queries
 
 ## Дополнительные материалы
 
@@ -747,14 +753,12 @@ https://devblogs.microsoft.com/pfxteam/await-anything/
     * Как выбрать данные сразу из нескольких столбцов, если записи объединены одним ключом? (`LEFT JOIN`, `RIGHT JOIN`, `INNER JOIN`)
     * Как выбрать все значения таблицы, имеющие дубликаты по одному столбцу (`HAVING`)
 
-1. Используя БД из первого урока (с таблицами Factory, Unit, Tank), напишите запросы:
+1. Используя БД из прошлого урока (с таблицами Factory, Unit, Tank), напишите запросы:
     * Список всех установок (Unit) с именем завода, к которому относится установка
     * Суммарное значение Volume и MaxVolume, а также количество резервуаров по каждой установке, с выводом имени установки, а также имени и описания завода, к которому относится установка
     * Суммарное значение Volume и MaxVolume резервуаров по каждому заводу
     * Выбрать все установки, у которых есть по крайней мере один резервуар с текущим значением Volume выше 1000
     * Выбрать все резервуары, относящиеся к газофракционным установкам =)
-
-> Вы можете использовать готовые SQL-скрипты создания таблицы для [Postgres](data/postgres.sql) или [MS SQL Server](ms-sql.sql)
 
 1. Индексы - что такое, как создать. Кластеризованные/некластеризованные. Какие преимущества даёт, какими доп. затратами может обернуться.
 
@@ -787,8 +791,8 @@ https://www.w3schools.com/sql/default.asp
 
 ## Инструменты
 
-* [MS SQL Server Management Studio (SSMS)](https://docs.microsoft.com/ru-ru/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)
-* [SQL Server Profiler](https://docs.microsoft.com/ru-ru/sql/tools/sql-server-profiler/sql-server-profiler?view=sql-server-ver15)
+* [MS SQL Server Management Studio (SSMS)](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)
+* [SQL Server Profiler](https://docs.microsoft.com/sql/tools/sql-server-profiler/sql-server-profiler?view=sql-server-ver15)
 
 # Дополнительное задание. Углубляемся в .NET
 
@@ -816,7 +820,7 @@ https://www.w3schools.com/sql/default.asp
 
 1. [Основы SQL](https://ru.wikipedia.org/wiki/SQL)
 1. [ADO.NET](https://metanit.com/sharp/adonet/1.1.php)
-1. [Библиотеки](https://docs.microsoft.com/ru-ru/dotnet/core/tutorials/library-with-visual-studio)
+1. [Библиотеки](https://docs.microsoft.com/dotnet/core/tutorials/library-with-visual-studio)
 
 ## Задание
 
@@ -833,7 +837,7 @@ https://www.w3schools.com/sql/default.asp
 
 [Тренажер основных команд SQL](https://www.w3schools.com/sql/default.asp)  
 
-[CQRS](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs)
+[CQRS](https://docs.microsoft.com/azure/architecture/patterns/cqrs)
 
 # Дополнительное задание. Реализовать собственную micro-ORM
 
@@ -1072,7 +1076,7 @@ var userHttpService = new UserHttpServiceBuilder()
 
 Добавить новый веб-сервис, который должен проксировать входящие веб-запросы к другим веб-сервисам, реализованным в рамках задач [CRUD на ASP.NET Core Web API](#crud-на-aspnet-core-web-api) и [Урок 5](#урок-5)
 
-Роутинг должен [осуществляться с помощью nuget-пакета Ocelot](https://docs.microsoft.com/ru-ru/dotnet/architecture/microservices/multi-container-microservice-net-applications/implement-api-gateways-with-ocelot), сервис должен пропускать GET, POST, PUT и DELETE запросы. Должны быть доступны методы управлением установками, резервуарами и заводами, а также получением событий (как из основного сервиса с БД, так и из второго веб-сервиса с mock-данными).
+Роутинг должен [осуществляться с помощью nuget-пакета Ocelot](https://docs.microsoft.com/dotnet/architecture/microservices/multi-container-microservice-net-applications/implement-api-gateways-with-ocelot), сервис должен пропускать GET, POST, PUT и DELETE запросы. Должны быть доступны методы управлением установками, резервуарами и заводами, а также получением событий (как из основного сервиса с БД, так и из второго веб-сервиса с mock-данными).
 
 ## Хостинг приложений, настройка реверс-проксирования запросов
 
