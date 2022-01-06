@@ -126,9 +126,9 @@
 
 ## Темы
 
-1. Типы данных
-1. Циклы, условные операторы
-1. Классы, методы, функции, свойства, поля
+1. [Типы данных](https://docs.microsoft.com/dotnet/csharp/fundamentals/types)
+1. [Циклы, условные операторы](https://docs.microsoft.com/dotnet/csharp/tour-of-csharp/tutorials/branches-and-loops-local)
+1. [Классы](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/class), [методы](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/methods) (a.k.a. функции), [свойства](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/properties) (и, в частности, [автосвойства](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/auto-implemented-properties)), [поля](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/fields)
 1. Основы ООП
 1. Работа с коллекциями, строками
 
@@ -268,9 +268,9 @@ https://code.visualstudio.com
 
 ## Темы
 
-* LINQ
-* JSON
-* Открытие и чтение текстового файла
+* [LINQ](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/)
+* [JSON](https://docs.microsoft.com/dotnet/standard/serialization/system-text-json-how-to)
+* [Открытие и чтение текстового файла](https://docs.microsoft.com/troubleshoot/dotnet/csharp/read-write-text-file)
 
 ## Задание
 
