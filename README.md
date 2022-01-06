@@ -749,7 +749,10 @@ https://devblogs.microsoft.com/pfxteam/await-anything/
 
 # Урок 6. SQL
 
-> Рекомендуется использовать Postgres или MS SQL Server
+В этом уроке Вам предлагается работать напрямую с базой данных, используя язык SQL. Уверенное владение этим языком - важный навык для бэкенд-разработчика.
+
+> SQL - язык, для которого существует стандарт. Его реализуют разные СУБД, такие как MS SQL Server, Oracle, PostgreSQL, MySQL и многие другие. Но несмотря на стандартизацию, каждый движок может иметь особенности, поэтому говорят о разных диалектах SQL.  
+> Для выполнения заданий в этом курсе рекомендуется использовать [Postgres](https://www.postgresql.org/) (популярная СУБД с открытым исходным кодом) или MS SQL Server.
 
 ## Темы для самостоятельного изучения
 
@@ -768,17 +771,16 @@ https://devblogs.microsoft.com/pfxteam/await-anything/
 
 1. Индексы - что такое, как создать. Кластеризованные/некластеризованные. Какие преимущества даёт, какими доп. затратами может обернуться.
 
-1. Оконные функции  
-    https://docs.microsoft.com/sql/t-sql/queries/select-over-clause-transact-sql?view=sql-server-ver15  
+1. Оконные функции [MS SQL](https://docs.microsoft.com/sql/t-sql/queries/select-over-clause-transact-sql?view=sql-server-ver15) или [Postgres](https://postgrespro.ru/docs/postgrespro/9.5/tutorial-window)  
     Из оконных функций чаще всего используется ROW_NUMBER()  
     Нужно понимать логику выражения `OVER(PARTITION BY ... ORDER BY ...)`  
     Напишите запрос, который будет удалять из таблицы `Factory` (см. скрипт создания таблицы в предшествующих пунктах) дубликаты строк, сравнивая по двум столбцам `Name` и `Description` (удалению подлежат более поздние записи с бОльшим `Id`)
 
 1. Как построить плана запроса в SSMS или pgAdmin? Что быстрее при поиске уникального значения - scan vs seek? Какими способами можно ускорить запрос, в процессе которого происходит scan всей таблицы с поиском одного значения по одному столбцу типа int?
 
-1. Напишите запрос к БД, созданной в рамках задачи [CRUD на ASP.NET Core Web API](#crud-на-aspnet-core-web-api) , запрос, содержащий `SELECT`, `WHERE` и `LEFT JOIN`. Постройте для этого запроса план запроса в SSMS.
+1. Напишите запрос к БД, созданной в рамках задачи [CRUD на ASP.NET Core Web API](#урок-3-crud-на-aspnet-core-web-api) , запрос, содержащий `SELECT`, `WHERE` и `LEFT JOIN`. Постройте для этого запроса план запроса в SSMS.
 
-1. Доп. задание (MS SQL). Запустив в режиме отладки приложение, реализованное в рамках задачи [CRUD на ASP.NET Core Web API](#crud-на-aspnet-core-web-api) , запустите и подключитесь к SQL серверу с помощью профилировщика (SQL Server Profiler). Отследите запросы, в которые Entity Framework транслирует Ваш код на C#. Попробуйте выполнить различные запросы при помощи интерфейса `IQueryable<T>`, и найти SQL запросы, которые получаются в результате:
+1. Доп. задание (MS SQL). Запустив в режиме отладки приложение, реализованное в рамках задачи [CRUD на ASP.NET Core Web API](#урок-3-crud-на-aspnet-core-web-api) , запустите и подключитесь к SQL серверу с помощью профилировщика (SQL Server Profiler). Отследите запросы, в которые Entity Framework транслирует Ваш код на C#. Попробуйте выполнить различные запросы при помощи интерфейса `IQueryable<T>`, и найти SQL запросы, которые получаются в результате:
    * выбор множества значений (`ToListAsync`)
    * выбор одного значения (`FirstOrDefaultAsync`)
    * выбор нескольких значений из строки с использованием анонимного типа (`Select(x => new { x.Id, x.Name })`)
@@ -799,6 +801,12 @@ https://www.w3schools.com/sql/default.asp
 
 * [MS SQL Server Management Studio (SSMS)](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)
 * [SQL Server Profiler](https://docs.microsoft.com/sql/tools/sql-server-profiler/sql-server-profiler?view=sql-server-ver15)
+* [PostreSQL EXPLAIN](https://www.postgresql.org/docs/9.2/using-explain.html)
+* [pg_stat_statements](https://www.postgresql.org/docs/9.4/pgstatstatements.html) 
+
+## Материалы
+
+[Видеокурс по PostgreSQL от PostgresPro](https://postgrespro.ru/education/courses/DEV1)
 
 # Дополнительное задание. Углубляемся в .NET
 
