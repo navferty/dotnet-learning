@@ -308,7 +308,7 @@ class Deal
    - возвращает номера (поле Id) в отсортированном по сумме по убыванию виде
 
 ```csharp
-IList<int> GetNumbersOfDeals(IEnumerable<Deal> deals)
+IList<string> GetNumbersOfDeals(IEnumerable<Deal> deals)
 {
    ...
 }
