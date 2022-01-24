@@ -193,32 +193,47 @@ class Program
 {
   static void Main(string[] args)
   {
-    var items = GetTanks();
-    Console.WriteLine($"Количество {items.Length} установок"); // должно быть 
+    var tanks = GetTanks();
+    var units = GetUnits();
+    var factories = GetFactories();
+    Console.WriteLine($"Количество резервуаров: {tanks.Length}, установок: {units.Length}");
 
-    var foundUnit = FindUnit(items, "Резервуар 2");
-    var factory = FindFactory(foundUnit);
+    var foundUnit = FindUnit(units, tanks, "Резервуар 2");
+    var factory = FindFactory(factories, foundUnit);
 
     Console.WriteLine($"Резервуар 2 принадлежит установке {foundUnit.Name} и заводу {factory.Name}");
 
-    var totalVolume = GetTotalVolume(items);
+    var totalVolume = GetTotalVolume(tanks);
     Console.WriteLine($"Общий объем резервуаров: {totalVolume}");
   }
 
   // реализуйте этот метод, чтобы он возвращал массив резервуаров, согласно приложенным таблицам
+  // можно использовать создание объектов прямо в C# коде через new, или читать из файла (на своё усмотрение)
   public static Tank[] GetTanks()
   {
     // ваш код здесь
   }
-    
-  // реализуйте этот метод, чтобы он возвращал найденный в массиве установок по имени
-  public static Unit FindUnit(Tank[] units, string unitName)
+  // реализуйте этот метод, чтобы он возвращал массив установок, согласно приложенным таблицам
+  public static Unit[] GetUnits()
+  {
+    // ваш код здесь
+  }
+  // реализуйте этот метод, чтобы он возвращал массив заводов, согласно приложенным таблицам
+  public static Factory[] GetFactories()
+  {
+    // ваш код здесь
+  }
+
+  // реализуйте этот метод, чтобы он возвращал установку (Unit), которой
+  // принадлежит резервуар (Tank), найденный в массиве резервуаров по имени
+  // учтите, что по заданному имени может быть не найден резервуар
+  public static Unit FindUnit(Unit[] units, Tank[] tanks, string unitName)
   {
     // ваш код здесь
   }
 
   // реализуйте этот метод, чтобы он возвращал объект завода, соответствующий установке
-  public static Factory FindFactory(Unit unit)
+  public static Factory FindFactory(Factory[] factories, Unit unit)
   {
     // ваш код здесь
   }
@@ -412,13 +427,13 @@ s.SomeEvent += OnSomeEvent;
 s.SomeEvent(s, eventArgs);
 ```
 
-### Исключения
+## Исключения
 
 Доработать метод `FindUnit` в предыдущем задании так, чтобы он выбрасывал InvalidOperationException с текстом "Не найдена установка с именем <имя установки>!".
 
 Доработать метод `Main`, чтобы перехватывать выброшенное исключение, и в этом случае вывести в консоль сообщение об ошибке, завершить программу.
 
-### События
+## События
 
 Реализовать консольное приложение.
 Объявить событие (event), на которое при старте приложения нужно будет оформить подписку методом, получающим объект типа
@@ -434,6 +449,32 @@ public class UserEnteredNumberEventArgs
 `Пользователь ввел число <число> в <время>`
 
 Приложение должно в бесконечном цикле читать пользовательский ввод. При получении ввода проверять, является ли пользовательский ввод целым числом: если является, необходимо вызвать event.
+
+## Асинхронность
+
+Рассмотрите программу, в которой последовательно происходит асинхронный вызов нескольких методов:
+
+```c#
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+public class Program
+{
+    public async Task Main()
+    {
+        var a = 1;
+        await Task.Delay(1000);
+        var b = a + 2;
+        await Task.Delay(2000);
+        b = b + 3;
+        await Task.Delay(3000);
+        Console.Write(a + b);
+    }
+}
+```
+
+Проанализируйте [результат компиляции этого кода на ресурсе shirplab.io](https://sharplab.io/#v2:D4AQTAjAsAUCAMACEECsBuWsQGZlmQgHZYBvWRS5PEADmQDZEBZAQwEsA7ACgEoKq5GFRGIAbqwBOiVogC8iCJmGjKIAJyMAdABEApgBtWAT24R4F3stWUJ0gEbyZiANSIw1mxu36jpsBbwVgKqjgqObjieqt4gDLqGJtw4gcEqqgDCAPacAM5ZBnpaAOqS7AAuetyybvZpIgC+sE0wQA===). Почему в декомпилированной версии (справа) появился `switch`, чему соответствует каждый из блоков `case` внутри него? Напишите ответ в текстовом файле в рабочей ветке своего репозитория.
 
 ## Материалы
 
@@ -1239,7 +1280,7 @@ var userHttpService = new UserHttpServiceBuilder()
     - Метод, который выполняет вычисления на CPU (например, получает несколько рандомных чисел и проводит с ними вычисления: суммирует/перемножает/возводит в степень/извлекает корень)
 - Запустите приложение, и с помощью сторонней утилиты (например, Fiddler или Postman) направьте на своё приложение некоторое количество запросов (например, десятки в секунду). Нагружайте по отдельности каждый из методов.
 - Соберите трассировку и дамп памяти во время работы под нагрузкой, для каждого из реализованных методов (дамп лучше сохранить спустя некоторое время после начала нагрузочного тестирования).
-    - Визуализируйте и проведите анализ трассировки: для каждого случая найдите те методы, выполнение которых занимает больше всего времени.
+    - Визуализируйте и проведите анализ трассировки: для каждого случая найдите те методы, выполнение которых занимает больше всего времени. Утилита dotnet-trace поддерживает несколько форматов, в том числе Speedscope, который [можно использовать для визуализации](https://www.hanselman.com/blog/dotnettrace-for-net-core-tracing-in-perfview-speedscope-chromium-event-trace-profiling-flame-graphs-and-more).
     - Проведите сравнительный анализ дампов для каждого из своих случаев. В котором из них приложение "съедало" больше всего оперативной памяти по данным диспетчера задач (или утилиты `top` если вы пользуетесь Linux)? Определите, объекты каких классов занимают больше всего памяти в этом случае.
 
 # Финальное задание
