@@ -28,9 +28,9 @@
 * \* Самостоятельная реализация алгоритмов из предыдущего пункта на C#
 
 ## Материалы для самостоятельного изучения:
-1. https://docs.microsoft.com/dotnet/csharp/tour-of-csharp/index
+1. [Краткий обзор языка C#](https://docs.microsoft.com/dotnet/csharp/tour-of-csharp/index)
 1. Jeffrey Richter "CLR via C#"
-2. Для самостоятельной тренировки Git: https://learngitbranching.js.org/?locale=ru_RU
+2. Для самостоятельной тренировки Git: [learngitbranching.js.org](https://learngitbranching.js.org/?locale=ru_RU)
 
 ## Туториалы базового уровня
 1. https://ulearn.me/
