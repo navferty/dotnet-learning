@@ -818,7 +818,7 @@ https://docs.microsoft.com/dotnet/api/system.net.http.httpclient?view=netcore-3.
 
 ## Задание
 
-Напишите [метод расширения](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/extension-methods) RunInParallel, который будет принимать в this-аргументе IEnumerable<Task<T>>, и вторым аргументом int maxParallelTasks - максимальное количество одновременно выполняемых задач (со значением по умолчанию 4).
+Напишите [метод расширения](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/extension-methods) RunInParallel, который будет принимать в this-аргументе `IEnumerable<Func<Task<T>>>`, и вторым аргументом int maxParallelTasks - максимальное количество одновременно выполняемых задач (со значением по умолчанию 4). Метод должен возвращать коллекцию результатов выполнения всех задач (`IReadOnlyCollection<T>`). Продумайте стратегию обработки исключений, которые могут возникнуть в части переданных задач.
 
 > В качестве примитива синхронизации можно использовать [SemaphoreSlim](https://docs.microsoft.com/dotnet/api/system.threading.semaphoreslim?view=netcore-3.1) или любой другой по Вашему усмотрению.
 
@@ -853,7 +853,7 @@ https://devblogs.microsoft.com/pfxteam/await-anything/
 1. Основные команды работы с данными: `SELECT` (с параметрами `WHERE`, `GROUP BY`, `ORDER BY`), `INSERT`, `UPDATE`, `DELETE`    
     * Как выбрать все записи со всеми столбцами из таблицы?
     * Как посчитать количество записей в таблице, удовлетворяющих некоторому условию?
-    * Как выбрать данные сразу из нескольких столбцов, если записи объединены одним ключом? (`LEFT JOIN`, `RIGHT JOIN`, `INNER JOIN`)
+    * Как выбрать данные сразу из нескольких таблиц, если записи объединены одним ключом? (`LEFT JOIN`, `RIGHT JOIN`, `INNER JOIN`)
     * Как выбрать все значения таблицы, имеющие дубликаты по одному столбцу (`HAVING`)
 
 1. Используя БД из прошлого урока (с таблицами Factory, Unit, Tank), напишите запросы:
