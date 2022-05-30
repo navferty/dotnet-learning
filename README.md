@@ -814,7 +814,7 @@ https://docs.microsoft.com/dotnet/api/system.net.http.httpclient?view=netcore-3.
 
 ## Задание
 
-Напишите [метод расширения](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/extension-methods) RunInParallel, который будет принимать в this-аргументе IEnumerable<Task<T>> или IEnumerable<Func<Task<T>>>, и вторым аргументом int maxParallelTasks - максимальное количество одновременно выполняемых задач (со значением по умолчанию 4).
+Напишите [метод расширения](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/extension-methods) RunInParallel, который будет принимать в this-аргументе IEnumerable<Func<Task>>, и вторым аргументом int maxParallelTasks - максимальное количество одновременно выполняемых задач (со значением по умолчанию 4).
 
 > В качестве примитива синхронизации можно использовать [SemaphoreSlim](https://docs.microsoft.com/dotnet/api/system.threading.semaphoreslim?view=netcore-3.1) или любой другой по Вашему усмотрению.
 
