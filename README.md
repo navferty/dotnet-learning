@@ -918,6 +918,51 @@ https://www.w3schools.com/sql/default.asp
 * Откройте одну из своих сборок (dll файл в папке bin в Вашем проекте) в программе ildasm. Проанализируйте, из чего состоит dll, познакомьтесь с кодом [Intermediate Language](https://docs.microsoft.com/dotnet/standard/managed-code) (IL), в который преобразуется исходный код на C# при компиляции проекта.
 * Скопируйте несколько методов из своего проекта на сайт [sharplab.io](https://sharplab.io). Этот сайт предлагает удобный способ проанализировать, во что превращается Ваш код на C# "под капотом".
 
+# Дополнительное задание. Замыкания
+
+## Материалы
+
+* Рихтер, Тепляков
+* https://www.viva64.com/ru/b/0468/
+
+## Пример для самостоятельного разбора
+
+Что выведет этот код? Прежде чем запускать, попробуйте самостоятельно дать ответ.
+
+Объясните, почему именно такое поведение в первом и во втором случае.
+
+```csharp
+void Main()
+{
+    DoSomething();
+    DoAgain();
+}
+
+void DoSomething()
+{
+    var i = 100;
+    var actions = Enumerable.Range(0, 10)
+        .Select(x => new Action(() => Console.WriteLine(i++)))
+        .ToList();
+    foreach (var action in actions)
+        action();
+}
+
+void DoAgain()
+{
+    var i = 100;
+    var actions = Enumerable.Range(0, 10)
+        .Select(x =>
+        {
+            i++;
+            return new Action(() => Console.WriteLine(i));
+        })
+        .ToList();
+    foreach (var action in actions)
+        action();
+}
+```
+
 # Урок 7. Работа с БД
 
 ## Темы
@@ -975,51 +1020,6 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 Пользователь определяет класс-контекст `CatDbContext` (Вы можете объявить абстрактный класс или интерфейс - например `SuperDbContext`, от которого пользователь должен наследовать пользовательский класс контекста), и регистрирует его в Startup'е, с указанием строки подключения к БД. После этого он может запросить через DI в своём сервисе экземпляр зарегистрированного контекста (`CatDbContext`), у которого будет возможность выполнить запрос `QueryMultipleItems`.
-
-# Дополнительное задание. Замыкания
-
-## Материалы
-
-* Рихтер, Тепляков
-* https://www.viva64.com/ru/b/0468/
-
-## Пример для самостоятельного разбора
-
-Что выведет этот код? Прежде чем запускать, попробуйте самостоятельно дать ответ.
-
-Объясните, почему именно такое поведение в первом и во втором случае.
-
-```csharp
-void Main()
-{
-    DoSomething();
-    DoAgain();
-}
-
-void DoSomething()
-{
-    var i = 100;
-    var actions = Enumerable.Range(0, 10)
-        .Select(x => new Action(() => Console.WriteLine(i++)))
-        .ToList();
-    foreach (var action in actions)
-        action();
-}
-
-void DoAgain()
-{
-    var i = 100;
-    var actions = Enumerable.Range(0, 10)
-        .Select(x =>
-        {
-            i++;
-            return new Action(() => Console.WriteLine(i));
-        })
-        .ToList();
-    foreach (var action in actions)
-        action();
-}
-```
 
 # Урок 7. Entity Framework
 
