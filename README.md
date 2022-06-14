@@ -874,7 +874,7 @@ https://devblogs.microsoft.com/pfxteam/await-anything/
    * выбор множества значений (`ToListAsync`)
    * выбор одного значения (`FirstOrDefaultAsync`)
    * выбор нескольких значений из строки с использованием анонимного типа (`Select(x => new { x.Id, x.Name })`)
-   * группировка и сортировка строк (`GroupBy`, `OrderBy`, `OrderByDesc`)
+   * группировка и сортировка строк (`GroupBy`, `OrderBy`, `OrderByDescending`)
    * выбор первых N значений, пропуск N значений (`Take`, `Skip`)
     <details><summary>Для фильтрации запросов при трассировке можно установить фильтр по фрагменту текста запроса</summary>
 
