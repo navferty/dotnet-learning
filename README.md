@@ -939,7 +939,7 @@ public class C {
     }
 }
 ```
-* Рассмотрите [результат компиляции](https://sharplab.io/#v2:CYLg1APgAgTAjAWAFBQMwAJboMLoN7LpGYZQAs6AsgBQCUhxBSxL6AbgIYBO6ANugF50AOwCmAd0xwyAOgAyASwDOAFwA8UAKxqFwlQD59dANwNW6AGYB7HtU48Fg9AAZj6R2vRxX7sGHrM5qy8MgCCwMDUdIL67rSmgeYhAGI2AKIcAMYAFtSOArHYVsJKVryiMgDqXAoqonl0tPFm6AC+yK1AA) этого кода и обратите внимание, что во все созданные делегаты передается ссылка на экземпляр класса-контейнера, содержащий в себе переменную i.
+* Рассмотрите [результат компиляции](https://sharplab.io/#v2:CYLg1APgAgTAjAWAFBQMwAJboMLoN7LpGYZQAs6AsgBQCUhxBSxL6AbgIYBO6ANugF50AOwCmAd0xwyAOgAyASwDOAFwA8UAKxqFwlQD59dANwNW6AGYB7HtU48Fg9AAZj6R2vRxX7sGHrM5qy8MgCCwMDUdIL67rSmgeYhAGI2AKIcAMYAFtSOArHYVsJKVryiMgDqXAoqonl0tPFm6AC+yK1AA) этого кода и обратите внимание, что во все созданные делегаты передается ссылка на экземпляр класса-контейнера, содержащий в себе переменную (i), которая на самом деле стала полем этого класса.
 * [Рихтер, Тепляков](https://sergeyteplyakov.blogspot.com/2010/04/c.html)
 * https://www.viva64.com/ru/b/0468/
 
