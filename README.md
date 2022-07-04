@@ -880,7 +880,7 @@ https://devblogs.microsoft.com/pfxteam/await-anything/
    * выбор множества значений (`ToListAsync`)
    * выбор одного значения (`FirstOrDefaultAsync`)
    * выбор нескольких значений из строки с использованием анонимного типа (`Select(x => new { x.Id, x.Name })`)
-   * группировка и сортировка строк (`GroupBy`, `OrderBy`, `OrderByDesc`)
+   * группировка и сортировка строк (`GroupBy`, `OrderBy`, `OrderByDescending`)
    * выбор первых N значений, пропуск N значений (`Take`, `Skip`)
     <details><summary>Для фильтрации запросов при трассировке можно установить фильтр по фрагменту текста запроса</summary>
 
@@ -923,6 +923,70 @@ https://www.w3schools.com/sql/default.asp
 * \* Сколько поколений объектов в CLR? Какого размера должен быть объект, чтобы он сразу попал в кучу больших объектов (Large object heap)? В чем преимущество struct на class при создании большого количества экземпляров данного типа? Предположим, что приложение активно работает с памятью, создавая большое количество объектов. Данные поступают непрерывным потоком с большой скоростью, и в силу особенностей бизнес-логики приложения успевают попасть во второе поколение до того, как станут недоступными по ссылке, и регулярная полная сборка мусора сильно сказывается на производительности. Какие способы решения этой проблемы Вы можете предложить? Опишите плюсы и минусы каждого варианта
 * Откройте одну из своих сборок (dll файл в папке bin в Вашем проекте) в программе ildasm. Проанализируйте, из чего состоит dll, познакомьтесь с кодом [Intermediate Language](https://docs.microsoft.com/dotnet/standard/managed-code) (IL), в который преобразуется исходный код на C# при компиляции проекта.
 * Скопируйте несколько методов из своего проекта на сайт [sharplab.io](https://sharplab.io). Этот сайт предлагает удобный способ проанализировать, во что превращается Ваш код на C# "под капотом".
+
+# Дополнительное задание. Замыкания
+## Вопросы
+
+Что такое лексическое окружение?
+
+При каких условиях может возникнуть замыкание?
+
+## Материалы
+
+```csharp
+using System;
+public class C {
+    public void M()
+    {
+        var l = new System.Collections.Generic.List<Func<int>>();
+        for (var i = 0; i < 10; i++)
+            l.Add(() => i);
+        l.ForEach(i => Console.Write(i()));
+    }
+}
+```
+* Рассмотрите [результат компиляции](https://sharplab.io/#v2:CYLg1APgAgTAjAWAFBQMwAJboMLoN7LpGYZQAs6AsgBQCUhxBSxL6AbgIYBO6ANugF50AOwCmAd0xwyAOgAyASwDOAFwA8UAKxqFwlQD59dANwNW6AGYB7HtU48Fg9AAZj6R2vRxX7sGHrM5qy8MgCCwMDUdIL67rSmgeYhAGI2AKIcAMYAFtSOArHYVsJKVryiMgDqXAoqonl0tPFm6AC+yK1AA) этого кода и обратите внимание, что во все созданные делегаты передается ссылка на экземпляр класса-контейнера, содержащий в себе переменную (i), которая на самом деле стала полем этого класса.
+ * Рихтер CLR via C#
+ * Сергей Тепляков [Замыкания в языке программирования C#](https://sergeyteplyakov.blogspot.com/2010/04/c.html)
+* https://www.viva64.com/ru/b/0468/
+
+## Пример для самостоятельного разбора
+
+Что выведет этот код? Прежде чем запускать, попробуйте самостоятельно дать ответ.
+
+Объясните, почему именно такое поведение в первом и во втором случае.
+
+```csharp
+void Main()
+{
+    DoSomething();
+    DoAgain();
+}
+
+void DoSomething()
+{
+    var i = 100;
+    var actions = Enumerable.Range(0, 10)
+        .Select(x => new Action(() => Console.WriteLine(i++)))
+        .ToList();
+    foreach (var action in actions)
+        action();
+}
+
+void DoAgain()
+{
+    var i = 100;
+    var actions = Enumerable.Range(0, 10)
+        .Select(x =>
+        {
+            i++;
+            return new Action(() => Console.WriteLine(i));
+        })
+        .ToList();
+    foreach (var action in actions)
+        action();
+}
+```
 
 # Урок 7. Работа с БД
 
@@ -981,51 +1045,6 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 Пользователь определяет класс-контекст `CatDbContext` (Вы можете объявить абстрактный класс или интерфейс - например `SuperDbContext`, от которого пользователь должен наследовать пользовательский класс контекста), и регистрирует его в Startup'е, с указанием строки подключения к БД. После этого он может запросить через DI в своём сервисе экземпляр зарегистрированного контекста (`CatDbContext`), у которого будет возможность выполнить запрос `QueryMultipleItems`.
-
-# Дополнительное задание. Замыкания
-
-## Материалы
-
-* Рихтер, Тепляков
-* https://www.viva64.com/ru/b/0468/
-
-## Пример для самостоятельного разбора
-
-Что выведет этот код? Прежде чем запускать, попробуйте самостоятельно дать ответ.
-
-Объясните, почему именно такое поведение в первом и во втором случае.
-
-```csharp
-void Main()
-{
-    DoSomething();
-    DoAgain();
-}
-
-void DoSomething()
-{
-    var i = 100;
-    var actions = Enumerable.Range(0, 10)
-        .Select(x => new Action(() => Console.WriteLine(i++)))
-        .ToList();
-    foreach (var action in actions)
-        action();
-}
-
-void DoAgain()
-{
-    var i = 100;
-    var actions = Enumerable.Range(0, 10)
-        .Select(x =>
-        {
-            i++;
-            return new Action(() => Console.WriteLine(i));
-        })
-        .ToList();
-    foreach (var action in actions)
-        action();
-}
-```
 
 # Урок 7. Entity Framework
 
