@@ -483,6 +483,7 @@ public class Program
 
 ## Материалы
 
+* Разбор темы async-await в [видео](https://www.youtube.com/watch?v=pYWIfLZ7obY&ab_channel=%D0%9D%D1%83%D0%B1%D0%9A%D0%BE%D0%B4%D0%B5%D1%80) и [текстовой версии](https://gist.github.com/navferty/828f22889f562b35e997b6bba5f8be6c)
 * https://docs.microsoft.com/dotnet/csharp/programming-guide/exceptions/exception-handling
 * https://docs.microsoft.com/dotnet/standard/events/how-to-raise-and-consume-events
 
