@@ -934,7 +934,7 @@ https://www.w3schools.com/sql/default.asp
 
 При каких условиях может возникнуть замыкание?
 
-## Материалы
+## Пример для разбора
 
 ```csharp
 using System;
@@ -943,14 +943,52 @@ public class C {
     {
         var l = new System.Collections.Generic.List<Func<int>>();
         for (var i = 0; i < 10; i++)
-            l.Add(() => i);
+            l.Add(() => i + 42);
         l.ForEach(i => Console.Write(i()));
     }
 }
 ```
-* Рассмотрите [результат компиляции](https://sharplab.io/#v2:CYLg1APgAgTAjAWAFBQMwAJboMLoN7LpGYZQAs6AsgBQCUhxBSxL6AbgIYBO6ANugF50AOwCmAd0xwyAOgAyASwDOAFwA8UAKxqFwlQD59dANwNW6AGYB7HtU48Fg9AAZj6R2vRxX7sGHrM5qy8MgCCwMDUdIL67rSmgeYhAGI2AKIcAMYAFtSOArHYVsJKVryiMgDqXAoqonl0tPFm6AC+yK1AA) этого кода и обратите внимание, что во все созданные делегаты передается ссылка на экземпляр класса-контейнера, содержащий в себе переменную (i), которая на самом деле стала полем этого класса.
- * Рихтер CLR via C#
- * Сергей Тепляков [Замыкания в языке программирования C#](https://sergeyteplyakov.blogspot.com/2010/04/c.html)
+* Рассмотрите [результат компиляции](https://sharplab.io/#v2:CYLg1APgAgTAjAWAFBQMwAJboMLoN7LpGYZQAs6AsgBQCUhxBSxL6AbgIYBO6ANugF50AOwCmAd0xwyAOgAyASwDOAFwA8UAKxqFwlQD59dANwNW6AGYB7HtU48Fg9AAZj6R2vRxX7sGHrM5qy8MgCCwMDUdIL67uhg6GQwtKaB5iEAYjYAohwAxgAW1I4CsdhWwkpWvKIyAOpcCiqixXS0KWboAL7IXUA==) этого кода и обратите внимание, что во все созданные делегаты передается ссылка на экземпляр класса-контейнера, содержащий в себе переменную (i), которая на самом деле стала полем этого класса.
+
+
+<details><summary>Упрощённый пример того, во что компилируется приведённый выше код</summary>
+	
+```c#
+public class C
+{
+    private sealed class LambdaHolder
+    {
+        public static readonly LambdaHolder Instance = new LambdaHolder();
+        public static Action<Func<int>> ActionValue;
+        internal void Execute(Func<int> i) => Console.Write(i());
+    }
+
+    private sealed class Closure
+    {
+        public int i;
+        internal int GetValue() => i + 42;
+    }
+
+    public void M()
+    {
+        var list = new List<Func<int>>();
+        var closure = new Closure();
+        closure.i = 0;
+        while (closure.i < 10)
+        {
+            list.Add(new Func<int>(closure.GetValue));
+            closure.i++;
+        }
+        list.ForEach(LambdaHolder.ActionValue ?? (LambdaHolder.ActionValue = new Action<Func<int>>(LambdaHolder.Instance.Execute)));
+    }
+}
+```
+
+</details>
+
+## Материалы
+* Рихтер CLR via C#
+* Сергей Тепляков [Замыкания в языке программирования C#](https://sergeyteplyakov.blogspot.com/2010/04/c.html)
 * https://www.viva64.com/ru/b/0468/
 
 ## Пример для самостоятельного разбора
